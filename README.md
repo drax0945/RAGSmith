@@ -1,4 +1,4 @@
-# rag_from_scratch
+# RAGSmith
 
 A minimal Retrieval-Augmented Generation (RAG) pipeline built from scratch, without a RAG
 framework (no LangChain/LlamaIndex) -- the goal was to understand what each moving piece
