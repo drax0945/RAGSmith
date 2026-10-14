@@ -1,0 +1,32 @@
+[server]
+maxUploadSize = 1000
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+codeFont = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+baseFontSize = 14
+headingFontWeights = 600
+baseRadius = "6px"
+buttonRadius = "6px"
+showWidgetBorder = true
+showSidebarBorder = true
+chartCategoricalColors = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948"]
+
+[theme.light]
+primaryColor = "#2a78d6"
+backgroundColor = "#f9f9f7"
+secondaryBackgroundColor = "#f0efec"
+textColor = "#0b0b0b"
+borderColor = "#e1e0d9"
+linkColor = "#256abf"
+
+[theme.dark]
+primaryColor = "#3987e5"
+backgroundColor = "#111110"
+secondaryBackgroundColor = "#1d1d1b"
+textColor = "#ecebe6"
+borderColor = "#2c2c2a"
+linkColor = "#6da7ec"
