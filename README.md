@@ -4,6 +4,31 @@ A minimal Retrieval-Augmented Generation (RAG) pipeline built from scratch, with
 framework (no LangChain/LlamaIndex) -- the goal was to understand what each moving piece
 actually does.
 
+## The interactive pipeline (UI)
+
+RAGSmith's UI turns the pipeline into a human-in-the-loop workflow. Each stage is
+gated: pick a technique, tune its parameters, run it, inspect the output, and only
+then accept it to unlock the next stage. Changing an earlier stage discards
+everything after it.
+
+| Stage | Techniques you can choose |
+|---|---|
+| 1. Load PDF | page-by-page text extraction (pypdf), with page preview |
+| 2. Chunk | fixed-size window, sentence packing, paragraph, recursive |
+| 3. Embed | Ollama (local), Voyage AI (remote), TF-IDF (local, lexical) |
+| 4. Retrieve | cosine similarity, MMR (diverse), hybrid dense + BM25, with test queries |
+| 5. Chat | any local Ollama LLM, with page-cited sources for every answer |
+
+```bash
+.venv/bin/streamlit run app.py
+```
+
+For fully local embeddings, pull an embedding model once: `ollama pull nomic-embed-text`.
+Voyage needs `VOYAGE_API_KEY` in `.env`. TF-IDF needs nothing.
+
+New techniques are entries in the `CHUNKERS` / `EMBEDDERS` / `RETRIEVERS` registries
+(see `options.py`). The UI builds its pickers and parameter controls from them.
+
 ## How it works
 
 ```
@@ -71,5 +96,10 @@ embeddings.py      Voyage AI embeddings (asymmetric query/document)
 vectorstore.py     in-memory numpy store + cosine similarity search
 generation.py      grounded prompt assembly + local LLM call (Ollama)
 main.py            ties it all together into an index-then-query CLI loop
+app.py             Streamlit UI: the step-by-step, human-in-the-loop pipeline
+ui.py              UI styling and HTML components (stepper, stage panels, stat tiles)
+charts.py          Altair charts for inspecting each stage's output
+loaders.py         PDF text extraction with page tracking
+options.py         Technique/Param definitions shared by the stage registries
 data/sample.txt    sample document used for testing
 ```

@@ -1,5 +1,9 @@
 anthropic
 voyageai
 numpy
+pandas
 python-dotenv
 ollama
+streamlit
+pypdf
+scikit-learn
